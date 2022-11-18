@@ -24,7 +24,7 @@ const SearchProduct = () => {
             <br/>
             <form onSubmit={handleSubmit}>
                 <input onBlur={handleBlur} type="text" name="product_name"/>
-                <input  type="submit" value="submit"/>
+                <input className='btn btn-success'  type="submit" value="submit"/>
               
             </form>
 

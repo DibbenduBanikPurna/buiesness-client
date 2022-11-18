@@ -1,20 +1,23 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import useFirebase from '../../Hooks/UseFirebase';
-import Admin from '../Admin/Admin';
+//import Admin from '../Admin/Admin';
 
 
 const Navbar = () => {
   const {users,logOut}=useFirebase()
-  console.log(users.email)
+ // console.log(users?.email)
+  sessionStorage.getItem('email')
   const [admin,setAdmin]=useState([])
-  //console.log(admin.email)
+ 
   useEffect(()=>{
     fetch('http://localhost:5000/admin')
     .then(res=>res.json())
     .then(data=>{
       setAdmin(data[0])
       console.log(data[0])
+      
+      
     })
   },[])
     return (
@@ -28,10 +31,10 @@ const Navbar = () => {
             <li className="nav-item active">
               <Link className="nav-link" to="/">Home</Link>
             </li>
-           {admin.email !==users.email ? <li className="nav-item">
+           {admin?.email !==users?.email ? <li className="nav-item">
               <Link className="nav-link" to="/addproduct">AddProduct</Link>
             </li>:''}
-          {admin.email !==users.email ?  <li className="nav-item">
+          {admin?.email !==users?.email ?  <li className="nav-item">
               <Link className="nav-link" to="/viewproduct">ViewProduct</Link>
             </li>:''}
        
